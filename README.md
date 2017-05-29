@@ -1,71 +1,64 @@
-# p1-calabpro
+p1-calabpro
 Project 1 Ca Labpro
 
-************************************************************************
-********               README versi 22 Mei 2017                *********
-********        NIM - Nama : 13515087 - Audry Nyonata          *********
-************************************************************************
+# README versi 22 Mei 2017             
+NIM - Nama : 13515087 - Audry Nyonata
 
 1. JSON
-JSON (JavaScript Object Notation) adalah sebuah format yang dibaca selama
-pembangunan struktur data. JSON bersifat minimal dan ringan, sehingga 
-mudah dibaca dan ditulis oleh manusia, serta mudah untuk diparse dan 
-digenerate oleh mesin. Utamanya JSON digunakan untuk memindahkan data 
-antara server dan web application, sebagai pengganti XML.
+   JSON (JavaScript Object Notation) adalah sebuah format yang dibaca selama
+   pembangunan struktur data. JSON bersifat minimal dan ringan, sehingga 
+   mudah dibaca dan ditulis oleh manusia, serta mudah untuk diparse dan 
+   digenerate oleh mesin. Utamanya JSON digunakan untuk memindahkan data 
+   antara server dan web application, sebagai pengganti XML.
 
-*Parse : menguraikan format file
-*Generate : menghasilkan format file
+   *Parse : menguraikan format file
+   *Generate : menghasilkan format file
 
-https://developers.squarespace.com/what-is-json/
-www.json.org/
+   https://developers.squarespace.com/what-is-json/
+   www.json.org/
 
 2. REST, hampir selalu memanfaatkan protokol HTTP.
-REST (Representational State Transfer) adalah sebuah gaya arsitektur 
-yang digunakan untuk perancangan aplikasi jaringan (networked applications). 
-REST menentukan berbagai batasan yang jika diaplikasikan
-pada sebuah layanan web dapat membantu menghasilkan ciri atau sifat
-tertentu yang kita ingingkan, dilihat dari segi performa, skalabilitas, 
-dan modifiabilitas, sehingga layanan web dapat bekerja dengan optimal.
+   REST (Representational State Transfer) adalah sebuah gaya arsitektur 
+   yang digunakan untuk perancangan aplikasi jaringan (networked applications). 
+   REST menentukan berbagai batasan yang jika diaplikasikan
+   pada sebuah layanan web dapat membantu menghasilkan ciri atau sifat
+   tertentu yang kita ingingkan, dilihat dari segi performa, skalabilitas, 
+   dan modifiabilitas, sehingga layanan web dapat bekerja dengan optimal.
 
-6 batasan yang diatur oleh REST yaitu,
-a. Uniform Interface, menyederhanakan interface client dengan server,
-   decoupling arsitektur agar setiap bagian dapat berkembang
-   secara independen.
-   
-b. Stateless, status yang dibutuhkan untuk menangani request terkandung
-   dalam request itu sendiri, misalnya sebagai bagian dari URI atau query.
-   
-c. Cacheable, clients dapat menyimpan responses dalam cache, untuk
-   meningkatkan performa dan kinerja sistem.
+   6 batasan yang diatur oleh REST yaitu,
+   a. Uniform Interface, menyederhanakan interface client dengan server,
+      decoupling arsitektur agar setiap bagian dapat berkembang
+      secara independen.  
+   b. Stateless, status yang dibutuhkan untuk menangani request terkandung
+      dalam request itu sendiri, misalnya sebagai bagian dari URI atau query.
+   c. Cacheable, clients dapat menyimpan responses dalam cache, untuk
+      meningkatkan performa dan kinerja sistem.
+   d. Client-Server, client dan server terpisah oleh interface,
+      clients tidak dipusingkan dengan data yang merupakan tanggung jawab 
+      server, sebaliknya server tidak dipusingkan dengan status user atau 
+      user interface.
+   e. Layered System, keterhubungan client-intermediary server-end server 
+      berlapis, layer ini dapat meningkatkan keamanan dan keseimbangan sistem.
+   f. Code on Demand (optional), memampukan layanan untuk menambah (extend)
+      atau mengkustomisasi fungsionalitas client melalui transfer logika.   
 
-d. Client-Server, client dan server terpisah oleh interface,
-   clients tidak dipusingkan dengan data yang merupakan tanggung jawab 
-   server, sebaliknya server tidak dipusingkan dengan status user atau 
-   user interface.
+   *Skalabilitas:
+   Kemampuan terukur sebuah proses komputasi untuk digunakan atau dibuat.
+   *Modifiabilitas: 
+   Kemampuan mengubah wujud atau sifat benda secara parsial/tidak menyeluruh.
 
-e. Layered System, keterhubungan client-intermediary server-end server 
-   berlapis, layer ini dapat meningkatkan keamanan dan keseimbangan sistem.
-
-f. Code on Demand (optional), memampukan layanan untuk menambah (extend)
-   atau mengkustomisasi fungsionalitas client melalui transfer logika.   
-
-*Skalabilitas:
-Kemampuan terukur sebuah proses komputasi untuk digunakan atau dibuat.
-*Modifiabilitas: 
-Kemampuan mengubah wujud atau sifat benda secara parsial/tidak menyeluruh.
- 
-stackoverflow.com/questions/671118/what-exactly-is-restful-programming
-docs.oracle.com/javaee/6/tutorial/doc/gijqy.html
-restapitutorial.com/lessons/whatisrest.html
+   stackoverflow.com/questions/671118/what-exactly-is-restful-programming
+   docs.oracle.com/javaee/6/tutorial/doc/gijqy.html
+   restapitutorial.com/lessons/whatisrest.html
 
 3. Github API
-Sebuah API dibangun dan dirancang untuk memudahkan pengguna dalam 
-menggunakan sebuah aplikasi tanpa perlu mempelajari seluruh bagian  
-source codenya. Github adalah layanan penyimpanan file git yang 
-mendukung social coding. Github API menawarkan REST API yang dapat 
-dimanfaatkan untuk mengakses resource atau sumber daya yang
-dimiliki Github, dengan catatan resource tersebut telah sengaja diatur
-oleh Github untuk diekspos ke publik.
+   Sebuah API dibangun dan dirancang untuk memudahkan pengguna dalam 
+   menggunakan sebuah aplikasi tanpa perlu mempelajari seluruh bagian  
+   source codenya. Github adalah layanan penyimpanan file git yang 
+   mendukung social coding. Github API menawarkan REST API yang dapat 
+   dimanfaatkan untuk mengakses resource atau sumber daya yang
+   dimiliki Github, dengan catatan resource tersebut telah sengaja diatur
+   oleh Github untuk diekspos ke publik.
 
-https://developer.github.com/v3/.
-https://blogs.infosupport.com/accessing-githubs-rest-api-with-curl/
+   https://developer.github.com/v3/.
+   https://blogs.infosupport.com/accessing-githubs-rest-api-with-curl/
