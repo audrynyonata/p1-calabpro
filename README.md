@@ -27,9 +27,9 @@ NIM - Nama : 13515087 - Audry Nyonata
    *Skalabilitas: Kemampuan terukur sebuah proses komputasi untuk digunakan atau dibuat.  
    *Modifiabilitas: Kemampuan mengubah wujud atau sifat benda secara parsial/tidak menyeluruh.
 
-   stackoverflow.com/questions/671118/what-exactly-is-restful-programming
-   docs.oracle.com/javaee/6/tutorial/doc/gijqy.html
-   restapitutorial.com/lessons/whatisrest.html
+   http://stackoverflow.com/questions/671118/what-exactly-is-restful-programming
+   http://docs.oracle.com/javaee/6/tutorial/doc/gijqy.html
+   http://restapitutorial.com/lessons/whatisrest.html
 
 3. Github API  
    Sebuah API dibangun dan dirancang untuk memudahkan pengguna dalam menggunakan sebuah aplikasi tanpa perlu mempelajari seluruh bagian source codenya. Github adalah layanan penyimpanan file git yang mendukung social coding. Github API menawarkan REST API yang dapat dimanfaatkan untuk mengakses resource atau sumber daya yang dimiliki Github, dengan catatan resource tersebut telah sengaja diatur oleh Github untuk diekspos ke publik.
