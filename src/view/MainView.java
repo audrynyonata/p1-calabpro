@@ -1,14 +1,18 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.NumberFormat;
 import java.text.ParseException;
 
@@ -105,13 +109,31 @@ public class MainView extends JFrame {
   }
   
   class ResultPanel extends JPanel {
-    private JList<String> userList;
-    private String[] listItems = new String[100];
     private int last = 0;
+    private String[] listItems = new String[100];
+    private JList<String> userList;
+    
     public ResultPanel(){
       setLayout(new BorderLayout());
       userList = new JList<String>(listItems);
       userList.setLayoutOrientation(JList.VERTICAL);
+      userList.addMouseListener(new MouseAdapter(){
+        public void mouseClicked(MouseEvent e) {
+          if (e.getClickCount() >= 1){
+            int index = userList.locationToIndex(e.getPoint());
+            if (index>=0 && userList!=null){
+              Object o = userList.getModel().getElementAt(index);
+              if (o!=null){
+                String s = o.toString();
+                UserView userFrame = new UserView(s);
+                userFrame.setVisible(true);
+              }
+            }
+          }
+        }
+      });
+      
+      /* Automatic Scrolling */
       JScrollPane p = new JScrollPane(userList);
       p.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener(){
         public void adjustmentValueChanged(AdjustmentEvent e) {
@@ -148,6 +170,19 @@ public class MainView extends JFrame {
     }
   }
   
+  public void searchByUser() {
+    //resultPanel.clear();
+    resultPanel.add(searchKey);
+  }
+  
+  public static void searchByEmail() {
+    //to-do
+  }
+  
+  public static void searchByNamaPengguna() {
+    //to-do
+  }
+  
   public JTextField searchField;
   public SearchByPanel searchByPanel;
   public FilterPanel filterPanel;
@@ -162,6 +197,9 @@ public class MainView extends JFrame {
     setTitle("Search by Audry Nyonata");
     setSize(600,600);
     setLayout(new GridBagLayout());
+    
+    Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+    this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     
     GridBagConstraints constraint = new GridBagConstraints(); 
     constraint.insets = new Insets(0,0,30,0);
@@ -245,18 +283,17 @@ public class MainView extends JFrame {
     constraint.gridy++;   
     constraint.ipady = 150;
     add(resultPanel,constraint);
-  }
-  
-  public void searchByUser() {
-    //resultPanel.clear();
-    //resultPanel.add(searchKey);
-  }
-  
-  public static void searchByEmail() {
-    //to-do
-  }
-  
-  public static void searchByNamaPengguna() {
-    //to-do
+    
+    JButton close = new JButton("Close");
+    close.addActionListener(new ActionListener(){
+      public void actionPerformed(ActionEvent e){
+        System.exit(0);
+      }
+    });
+    constraint.fill = GridBagConstraints.NONE;
+    constraint.ipadx = 0;
+    constraint.ipady = 0;
+    constraint.gridy++;
+    add(close,constraint);
   }
 }
