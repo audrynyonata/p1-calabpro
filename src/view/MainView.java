@@ -199,23 +199,15 @@ public class MainView extends JFrame {
     setLayout(new GridBagLayout());
     
     Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-    this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+    setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     
-    GridBagConstraints constraint = new GridBagConstraints(); 
-    constraint.insets = new Insets(0,0,30,0);
-    constraint.gridx = 0;
-    constraint.gridy = 0;
-        
-    constraint.gridwidth = GridBagConstraints.REMAINDER;
+    Insets insets1 = new Insets(0,0,30,0);
+    
     JLabel label1 = new JLabel("Search by Audry Nyonata");
     label1.setFont(new Font(label1.getFont().getName(),Font.PLAIN,32));
-    add(label1,constraint);
+    add(label1,new GridBagConstraints(0,0,GridBagConstraints.REMAINDER,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.NONE,insets1,0,0));
     
-    constraint.fill = GridBagConstraints.HORIZONTAL;
-    
-    constraint.gridwidth = 1;
-    constraint.gridy++;   
-    add(new JLabel("Enter keyword : "),constraint);
+    add(new JLabel("Enter keyword : "),new GridBagConstraints(0,1,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,insets1,0,0));
 
     searchField = new JTextField(20);
     searchField.getDocument().addDocumentListener(new DocumentListener(){
@@ -236,31 +228,17 @@ public class MainView extends JFrame {
         }
       }
     });
-    constraint.gridwidth = 1;
-    constraint.gridx++;
-    add(searchField,constraint);
-    constraint.gridx--;
+    add(searchField,new GridBagConstraints(1,1,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,insets1,0,0));
 
-    constraint.insets = new Insets(0,0,20,20);
+    Insets insets2 = new Insets(0,0,20,20);
     searchByPanel = new SearchByPanel();
-    constraint.gridwidth = 1;
-    constraint.gridy++;   
-    add(searchByPanel,constraint);
-    
-    constraint.insets = new Insets(0,0,20,0);
+    add(searchByPanel,new GridBagConstraints(0,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,insets2,0,0));
+
     filterPanel = new FilterPanel();
-    constraint.gridwidth = 1;
-    constraint.gridx++;    
-    add(filterPanel,constraint);
-    constraint.gridx--;
-    
-    constraint.fill = GridBagConstraints.NONE;
-    
+    add(filterPanel,new GridBagConstraints(1,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,insets1,0,0));
+
     searchButton = new JButton("Search");
     searchButton.setEnabled(false);
-    constraint.gridwidth = GridBagConstraints.REMAINDER;
-    constraint.gridy++;
-    add(searchButton,constraint);
     searchButton.addActionListener(new ActionListener(){
       public void actionPerformed(ActionEvent e){
         searchKey = searchField.getText();
@@ -275,25 +253,18 @@ public class MainView extends JFrame {
         }
       }
     });
-    
-    constraint.fill = GridBagConstraints.HORIZONTAL;
-    
+    add(searchButton,new GridBagConstraints(0,3,GridBagConstraints.REMAINDER,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.NONE,insets1,0,0));
+   
+    Insets insets3 = new Insets(0,0,20,0);
     resultPanel = new ResultPanel();
-    constraint.gridwidth = GridBagConstraints.REMAINDER;
-    constraint.gridy++;   
-    constraint.ipady = 150;
-    add(resultPanel,constraint);
+    add(resultPanel,new GridBagConstraints(0,4,GridBagConstraints.REMAINDER,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,insets3,0,150));
     
-    JButton close = new JButton("Close");
-    close.addActionListener(new ActionListener(){
+    JButton exit = new JButton("Exit");
+    exit.addActionListener(new ActionListener(){
       public void actionPerformed(ActionEvent e){
         System.exit(0);
       }
     });
-    constraint.fill = GridBagConstraints.NONE;
-    constraint.ipadx = 0;
-    constraint.ipady = 0;
-    constraint.gridy++;
-    add(close,constraint);
+    add(exit,new GridBagConstraints(0,5,GridBagConstraints.REMAINDER,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.NONE,insets3,0,0));
   }
 }

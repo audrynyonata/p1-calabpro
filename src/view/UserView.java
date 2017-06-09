@@ -23,91 +23,43 @@ import javax.swing.JScrollPane;
 public class UserView extends JFrame {
    private String username;
    private String email;
-   private String namapengguna;
+   private String namaPengguna;
    private Integer nRepo;
    private Integer nFollower;
-   private RepositoryPanel repositoryPanel;
    
    public UserView(String s) {
      username = s;
      email = "aaa@email.com";
-     namapengguna = "AA A";
+     namaPengguna = "AA A";
      nRepo = 0;
      nFollower = 100;
+
      setTitle(username);
      setSize(500,500);
      setLayout(new GridBagLayout());
+     setLocationByPlatform(true);
      
-     GridBagConstraints constraint = new GridBagConstraints(); 
-     constraint.fill = GridBagConstraints.NONE;
-     constraint.insets = new Insets(0,10,10,15);
-     constraint.anchor = GridBagConstraints.WEST;
-     constraint.gridx = 0;
-     constraint.gridy = 0;      
-     constraint.gridwidth = 1;
-     add(new JLabel("Username "),constraint);
-     JLabel label1 = new JLabel(username);
-     constraint.gridwidth = 1;
-     constraint.gridx++;
-     add(label1,constraint);
-
-     constraint.gridwidth = 1;
-     constraint.gridx--;
-     constraint.gridy++;
-     add(new JLabel("E-mail "),constraint);
-     JLabel label2 = new JLabel(email);
-     constraint.gridwidth = 1;
-     constraint.gridx++;
-     add(label2,constraint);
-     
-     constraint.gridwidth = 1;
-     constraint.gridx--;
-     constraint.gridy++;
-     add(new JLabel("Nama Pengguna "),constraint);
-     JLabel label3 = new JLabel(namapengguna);
-     constraint.gridwidth = 1;
-     constraint.gridx++;
-     add(label3,constraint);
-     
-     
-     constraint.gridwidth = 1;
-     constraint.gridx--;
-     constraint.gridy++;
-     add(new JLabel("Jumlah repository "),constraint);
-     JLabel label4 = new JLabel(nRepo.toString());
-     constraint.gridwidth = 1;
-     constraint.gridx++;
-     add(label4,constraint);
-     
-     constraint.gridwidth = 1;
-     constraint.gridx--;
-     constraint.gridy++;
-     add(new JLabel("Jumlah follower "),constraint);
-     JLabel label5 = new JLabel(nFollower.toString());
-     constraint.gridwidth = 1;
-     constraint.gridx++;
-     add(label5,constraint);
-     
-     repositoryPanel = new RepositoryPanel();
-     constraint.gridwidth = GridBagConstraints.REMAINDER;
-     constraint.gridx--;
-     constraint.gridy++;
-     constraint.ipadx = 450;
-     constraint.ipady = 250;
-     add(repositoryPanel,constraint);
+     Insets insets1 = new Insets(0,10,10,15);
+     add(new JLabel("Username "),new GridBagConstraints(0,0,1,1,0,0,GridBagConstraints.WEST,GridBagConstraints.NONE,insets1,0,0));
+     add(new JLabel(username),new GridBagConstraints(1,0,1,1,0,0,GridBagConstraints.WEST,GridBagConstraints.NONE,insets1,0,0));
+     add(new JLabel("E-mail "),new GridBagConstraints(0,1,1,1,0,0,GridBagConstraints.WEST,GridBagConstraints.NONE,insets1,0,0));
+     add(new JLabel(email),new GridBagConstraints(1,1,1,1,0,0,GridBagConstraints.WEST,GridBagConstraints.NONE,insets1,0,0));
+     add(new JLabel("Nama Pengguna "),new GridBagConstraints(0,2,1,1,0,0,GridBagConstraints.WEST,GridBagConstraints.NONE,insets1,0,0));
+     add(new JLabel(namaPengguna),new GridBagConstraints(1,2,1,1,0,0,GridBagConstraints.WEST,GridBagConstraints.NONE,insets1,0,0));
+     add(new JLabel("Jumlah repository "),new GridBagConstraints(0,3,1,1,0,0,GridBagConstraints.WEST,GridBagConstraints.NONE,insets1,0,0));
+     add(new JLabel(nRepo.toString()),new GridBagConstraints(1,3,1,1,0,0,GridBagConstraints.WEST,GridBagConstraints.NONE,insets1,0,0));
+     add(new JLabel("Jumlah follower "),new GridBagConstraints(0,4,1,1,0,0,GridBagConstraints.WEST,GridBagConstraints.NONE,insets1,0,0));
+     add(new JLabel(nFollower.toString()),new GridBagConstraints(1,4,1,1,0,0,GridBagConstraints.WEST,GridBagConstraints.NONE,insets1,0,0));
+     add(new RepositoryPanel(),new GridBagConstraints(0,5,GridBagConstraints.REMAINDER,1,0,0,GridBagConstraints.WEST,GridBagConstraints.NONE,insets1,450,250));
      
      JButton close = new JButton("Close");
      close.addActionListener(new ActionListener(){
        public void actionPerformed(ActionEvent e){
-         setVisible(false);
+         dispose();
        }
      });
      
-     constraint.anchor = GridBagConstraints.CENTER;
-     constraint.ipadx = 0;
-     constraint.ipady = 0;
-     constraint.gridy++;
-     add(close,constraint);
+     add(close,new GridBagConstraints(0,6,GridBagConstraints.REMAINDER,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.NONE,insets1,0,0));
    }
    
    class RepositoryPanel extends JPanel {
