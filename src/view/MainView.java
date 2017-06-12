@@ -9,8 +9,6 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.NumberFormat;
@@ -31,6 +29,8 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.NumberFormatter;
 
+import controller.ParserJson;
+
 /**
  * MainView.java
  * @author NIM/Nama: 13515087/Audry Nyonata.
@@ -40,14 +40,15 @@ import javax.swing.text.NumberFormatter;
 public class MainView extends JFrame {
   class SearchByPanel extends JPanel {
     private ButtonGroup group = new ButtonGroup();
-    private String[] value = {"Username", "E-mail", "Nama Pengguna"}; 
-    
+    private String[] text = {"Username", "E-mail", "Nama Pengguna"}; 
+    private String[] value = {"login", "email", "fullname"}; 
+       
     public SearchByPanel() {
       setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
       add(new JLabel("Search by : "));
       for(int i = 0; i<value.length; i++) {
         JRadioButton button = new JRadioButton();
-        button.setText(value[i]);
+        button.setText(text[i]);
         button.setActionCommand(value[i]);
         if (i==0){
           button.setSelected(true);
@@ -93,7 +94,7 @@ public class MainView extends JFrame {
     
     public int getNRepo(){
       if (repoField.getText().equals("")){
-        return -1;
+        return ParserJson.FILTER_NONE;
       } else {
         return (Integer.parseInt(repoField.getText()));
       }
@@ -101,7 +102,7 @@ public class MainView extends JFrame {
 
     public int getNFollower(){
       if (followerField.getText().equals("")){
-        return -1;
+        return ParserJson.FILTER_NONE;
       } else {
         return (Integer.parseInt(followerField.getText()));
       }
@@ -133,13 +134,7 @@ public class MainView extends JFrame {
         }
       });
       
-      /* Automatic Scrolling */
       JScrollPane p = new JScrollPane(userList);
-      p.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener(){
-        public void adjustmentValueChanged(AdjustmentEvent e) {
-          userList.ensureIndexIsVisible(resultPanel.getLast());
-        }
-      });
       add(p);
     }
     
@@ -149,6 +144,13 @@ public class MainView extends JFrame {
     
     public String[] getArray(){
       return listItems;
+    }
+    
+    public void setArray(String[] s){
+      clear();
+      for (int i = 0; i < s.length; i++){
+        listItems[i] = s[i];
+      }
     }
     
     public int getLast(){
@@ -162,25 +164,32 @@ public class MainView extends JFrame {
       last = 0;
       userList.setListData(listItems);
     }
-    
-    public void add(String s){
-      listItems[last] = s;
-      last++;
-      userList.setListData(listItems);
+  }
+  
+  public String[] getUsers(){
+    ParserJson x = new ParserJson();
+    x.setAsJsonSearch(keyword, searchIn, nRepo, nFollower);
+    int count = Integer.parseInt(x.get(ParserJson.TOTAL_COUNT,0));
+    if (count > 100) {
+      count = 100;
     }
+
+    String[] result = new String[count];
+    int fromIndex = 0;
+    String username = "";
+    for (int n = 0; n < count; n++){
+      if (n > 0){
+        fromIndex = x.getString().indexOf(username,fromIndex); 
+      }
+      username = x.get(ParserJson.USERNAME,fromIndex);
+      result[n] = username;
+    }
+    return result;
   }
   
-  public void searchByUser() {
-    //resultPanel.clear();
-    resultPanel.add(searchKey);
-  }
-  
-  public static void searchByEmail() {
-    //to-do
-  }
-  
-  public static void searchByNamaPengguna() {
-    //to-do
+  public void search() {
+    resultPanel.clear();
+    resultPanel.setArray(getUsers());
   }
   
   public JTextField searchField;
@@ -189,10 +198,11 @@ public class MainView extends JFrame {
   public JButton searchButton;
   public ResultPanel resultPanel;
   
-  public String searchKey;
+  public String keyword;
+  public String searchIn;
   public Integer nRepo;
   public Integer nFollower;
-  
+
   public MainView() {
     setTitle("Search by Audry Nyonata");
     setSize(600,600);
@@ -201,7 +211,7 @@ public class MainView extends JFrame {
     Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
     setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     
-    Insets insets1 = new Insets(0,0,30,0);
+    Insets insets1 = new Insets(0,0,25,0);
     
     JLabel label1 = new JLabel("Search by Audry Nyonata");
     label1.setFont(new Font(label1.getFont().getName(),Font.PLAIN,32));
@@ -230,34 +240,29 @@ public class MainView extends JFrame {
     });
     add(searchField,new GridBagConstraints(1,1,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,insets1,0,0));
 
-    Insets insets2 = new Insets(0,0,20,20);
+    Insets insets2 = new Insets(0,0,15,20);
     searchByPanel = new SearchByPanel();
     add(searchByPanel,new GridBagConstraints(0,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,insets2,0,0));
 
+    Insets insets3 = new Insets(0,0,15,0);
     filterPanel = new FilterPanel();
-    add(filterPanel,new GridBagConstraints(1,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,insets1,0,0));
+    add(filterPanel,new GridBagConstraints(1,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,insets3,0,0));
 
     searchButton = new JButton("Search");
     searchButton.setEnabled(false);
     searchButton.addActionListener(new ActionListener(){
       public void actionPerformed(ActionEvent e){
-        searchKey = searchField.getText();
+        keyword = searchField.getText();
+        searchIn = searchByPanel.getGroup().getSelection().getActionCommand();
         nRepo = filterPanel.getNRepo();
         nFollower = filterPanel.getNFollower();
-        if (searchByPanel.getGroup().getSelection().getActionCommand().equals("Username")){
-          searchByUser();
-        } else if (searchByPanel.getGroup().getSelection().getActionCommand().equals("E-mail")){
-          searchByEmail();
-        } else  {
-          searchByNamaPengguna();
-        }
+        search();
       }
     });
-    add(searchButton,new GridBagConstraints(0,3,GridBagConstraints.REMAINDER,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.NONE,insets1,0,0));
+    add(searchButton,new GridBagConstraints(0,3,GridBagConstraints.REMAINDER,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.NONE,insets2,0,0));
    
-    Insets insets3 = new Insets(0,0,20,0);
     resultPanel = new ResultPanel();
-    add(resultPanel,new GridBagConstraints(0,4,GridBagConstraints.REMAINDER,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,insets3,0,150));
+    add(resultPanel,new GridBagConstraints(0,4,GridBagConstraints.REMAINDER,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,insets3,0,200));
     
     JButton exit = new JButton("Exit");
     exit.addActionListener(new ActionListener(){
