@@ -11,7 +11,6 @@ public class User {
   private String namaPengguna;
   private Integer nRepo;
   private Integer nFollower;
-  
 
   public User(){
     username = "";
@@ -48,7 +47,6 @@ public class User {
   public Integer getNFollower(){
     return nFollower;
   }
-
   
   public void setData(String u, String e, String n, Integer r, Integer f){
     username = u;

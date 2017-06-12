@@ -38,5 +38,5 @@ public class Repository {
     nama = n;
     deskripsi = d;
     url = u;
-  }  
+  }
 }
