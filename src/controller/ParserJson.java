@@ -16,6 +16,7 @@ import model.User;
 public class ParserJson {
   private static final String githubUrl = "https://api.github.com";
   
+  public static final int DEFAULT_BRANCH = 0;
   public static final int TOTAL_COUNT = 1;
   public static final int USERNAME = 2;
   public static final int EMAIL = 3;
@@ -25,7 +26,8 @@ public class ParserJson {
   public static final int NAMA_REPOSITORY = 7;
   public static final int DESCRIPTION = 8;
   public static final int HTML_URL = 9;
-
+  public static final int SITE_ADMIN = 10;
+  
   public static final int FILTER_NONE = -1;
 
   private String s;
@@ -87,7 +89,6 @@ public class ParserJson {
     }
     searchUrl.append("&per_page=100");
     s = getFromUrl(searchUrl.toString());
-    System.out.println(s);
   }
   
   public void setAsJsonUser(String username){
@@ -104,7 +105,7 @@ public class ParserJson {
       int i = temp.indexOf("\"owner\"");
       int j = temp.indexOf("\"private\"",i);
       for (int k=i; k<j; k++){
-        arr[k] = '\0';
+        arr[k] = ' ';
       }
       temp = new String(arr);
     }
@@ -124,7 +125,8 @@ public class ParserJson {
         case NAMA_REPOSITORY : key = "name"; break;
         case DESCRIPTION : key = "description"; break;
         case HTML_URL : key = "html_url"; break;
-        default : key = "login"; break;
+        case SITE_ADMIN : key = "site_admin"; break;
+        default : key = "default_branch"; break;
       }
       key = "\"" + key + "\":";
       int lhs = s.indexOf(key, fromIndex);
