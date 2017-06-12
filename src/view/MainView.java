@@ -110,7 +110,6 @@ public class MainView extends JFrame {
   }
   
   class ResultPanel extends JPanel {
-    private int last = 0;
     private String[] listItems = new String[100];
     private JList<String> userList;
     
@@ -151,17 +150,13 @@ public class MainView extends JFrame {
       for (int i = 0; i < s.length; i++){
         listItems[i] = s[i];
       }
-    }
-    
-    public int getLast(){
-      return last;
+      userList.setListData(listItems);
     }
     
     public void clear(){
       for(int i = 0; i<listItems.length; i++){
         listItems[i]="";
       }
-      last = 0;
       userList.setListData(listItems);
     }
   }
@@ -176,11 +171,14 @@ public class MainView extends JFrame {
 
     String[] result = new String[count];
     int fromIndex = 0;
+    String lastElement = "";
     String username = "";
     for (int n = 0; n < count; n++){
       if (n > 0){
-        fromIndex = x.getString().indexOf(username,fromIndex); 
+        fromIndex = x.getString().indexOf(lastElement,fromIndex) + 1;
       }
+      System.out.println(fromIndex);
+      lastElement = x.get(ParserJson.SITE_ADMIN,fromIndex);
       username = x.get(ParserJson.USERNAME,fromIndex);
       result[n] = username;
     }

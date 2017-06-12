@@ -14,6 +14,12 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import model.Repository;
+import model.User;
+
+import controller.RepositoryController;
+import controller.UserController;
+
 /**
  * UserView.java
  * @author NIM/Nama: 13515087/Audry Nyonata.
@@ -21,18 +27,16 @@ import javax.swing.JScrollPane;
 
 @SuppressWarnings("serial")
 public class UserView extends JFrame {
-   private String username;
-   private String email;
-   private String namaPengguna;
-   private Integer nRepo;
-   private Integer nFollower;
-   
+   private User user;
+
    public UserView(String s) {
-     username = s;
-     email = "aaa@email.com";
-     namaPengguna = "AA A";
-     nRepo = 0;
-     nFollower = 100;
+     UserController uc = new UserController(s);
+     user = uc.getUserInfo();
+     String username = user.getUsername();
+     String email = user.getEmail();
+     String namaPengguna = user.getNamaPengguna();
+     Integer nRepo = user.getNRepo();
+     Integer nFollower = user.getNFollower();
 
      setTitle(username);
      setSize(500,500);
@@ -59,29 +63,35 @@ public class UserView extends JFrame {
        }
      });
      
-     add(close,new GridBagConstraints(0,6,GridBagConstraints.REMAINDER,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.NONE,insets1,0,0));
+     add(close,new GridBagConstraints(0,6,GridBagConstraints.REMAINDER,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.NONE,insets1,30,0));
    }
    
    class RepositoryPanel extends JPanel {
-     private int last = 0;
-     private String[] listItems = new String[100]; //to-do: string diganti repository
-     private JList<String> repoList; //to-do: string diganti repository
+     private Repository[] listItems;
+     private JList<Repository> repoList;
      
      public RepositoryPanel(){
        setLayout(new BorderLayout());
-       repoList = new JList<String>(listItems);
+       RepositoryController rc = new RepositoryController(user);
+       listItems = rc.getRepos();
+       repoList = new JList<Repository>(listItems);
        repoList.setLayoutOrientation(JList.VERTICAL);
-       //print repo name
-       //print repo description
-       //print repo url
-     
        JScrollPane p = new JScrollPane(repoList);
        add(p);
      }
      
-     public void add(String s){
-       listItems[last] = s;
-       last++;
+     public void clear(){
+       for(int i = 0; i<listItems.length; i++){
+         listItems[i].setData(null, null, null);
+       }
+       repoList.setListData(listItems);
+     }
+     
+     public void setArray(Repository[] r){
+       clear();
+       for (int i = 0; i < r.length; i++){
+         listItems[i] = r[i];
+       }
        repoList.setListData(listItems);
      }
    }
