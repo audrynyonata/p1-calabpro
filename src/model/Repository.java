@@ -39,4 +39,12 @@ public class Repository {
     deskripsi = d;
     url = u;
   }
+  
+  public String toString(){
+    StringBuilder stringBuilder = new StringBuilder();
+    stringBuilder.append(nama).append(System.getProperty("line.separator"));
+    stringBuilder.append(deskripsi).append(System.getProperty("line.separator"));
+    stringBuilder.append(url);
+    return (stringBuilder.toString());
+  }
 }
