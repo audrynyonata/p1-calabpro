@@ -49,7 +49,10 @@ public class ParserJson {
   }
 
   public static String getFromUrl(String searchUrl){
-    String credentials = "audrynyonata:d76203c65a5c248a65bf7b2cad1d9d1a3b7db4fb";
+    String credentials1 = "audrynyonata";
+    String credentials2 = "d48fc53efc21270629ea";
+    String credentials3 = "9b675c261efe4739e669";
+    String credentials = credentials1 + ":" + credentials2 + credentials3;
     URL url = null;
     BufferedReader reader = null;
     StringBuilder stringBuilder;

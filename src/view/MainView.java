@@ -122,8 +122,8 @@ public class MainView extends JFrame {
           if (e.getClickCount() >= 1){
             int index = userList.locationToIndex(e.getPoint());
             if (index>=0 && userList!=null){
-              Object o = userList.getModel().getElementAt(index);
-              if (o!=null){
+              String o = userList.getModel().getElementAt(index).toString();
+              if (!o.equals("") && !o.equals("Tidak ditemukan")){
                 String s = o.toString();
                 UserView userFrame = new UserView(s);
                 userFrame.setVisible(true);
@@ -161,34 +161,6 @@ public class MainView extends JFrame {
     }
   }
   
-  public String[] getUsers(){
-    ParserJson x = new ParserJson();
-    x.setAsJsonSearch(keyword, searchIn, nRepo, nFollower);
-    int count = Integer.parseInt(x.get(ParserJson.TOTAL_COUNT,0));
-    if (count > 100) {
-      count = 100;
-    }
-
-    String[] result = new String[count];
-    int fromIndex = 0;
-    String lastElement = "";
-    String username = "";
-    for (int n = 0; n < count; n++){
-      if (n > 0){
-        fromIndex = x.getString().indexOf(lastElement,fromIndex) + 1;
-      }
-      System.out.println(fromIndex);
-      lastElement = x.get(ParserJson.SITE_ADMIN,fromIndex);
-      username = x.get(ParserJson.USERNAME,fromIndex);
-      result[n] = username;
-    }
-    return result;
-  }
-  
-  public void search() {
-    resultPanel.clear();
-    resultPanel.setArray(getUsers());
-  }
   
   public JTextField searchField;
   public SearchByPanel searchByPanel;
@@ -269,5 +241,39 @@ public class MainView extends JFrame {
       }
     });
     add(exit,new GridBagConstraints(0,5,GridBagConstraints.REMAINDER,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.NONE,insets3,0,0));
+  }
+  
+  public String[] getUsers(){
+    ParserJson x = new ParserJson();
+    x.setAsJsonSearch(keyword, searchIn, nRepo, nFollower);
+    int count = Integer.parseInt(x.get(ParserJson.TOTAL_COUNT,0));
+    String[] result = new String[count];
+    if (count == 0){
+      result = new String[1];
+      result[0] = "Tidak ditemukan";
+    } else {
+      if (count > 100) {
+        count = 100;
+      }
+      result = new String[count];
+      int fromIndex = 0;
+      String lastElement = "";
+      String username = "";
+      for (int n = 0; n < count; n++){
+        if (n > 0){
+          fromIndex = x.getString().indexOf(lastElement,fromIndex) + 1;
+        }
+        System.out.println(fromIndex);
+        lastElement = x.get(ParserJson.SITE_ADMIN,fromIndex);
+        username = x.get(ParserJson.USERNAME,fromIndex);
+        result[n] = username;
+      }
+    }
+    return result;
+  }
+  
+  public void search() {
+    resultPanel.clear();
+    resultPanel.setArray(getUsers());
   }
 }

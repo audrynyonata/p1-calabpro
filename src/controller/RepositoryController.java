@@ -1,6 +1,5 @@
 package controller;
 
-import view.UserView;
 import model.Repository;
 import model.User;
 
@@ -41,10 +40,5 @@ public class RepositoryController {
       result[n] = new Repository(nama, deskripsi, url);
     }
     return result;
-  }
-
-  public static void main (String[] args){
-    UserView uv = new UserView("audrynyonata");
-    uv.setVisible(true);
   }
 }
