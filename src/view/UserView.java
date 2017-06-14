@@ -80,6 +80,7 @@ public class UserView extends JFrame {
          model.addElement(i+1 + ": " + listItems[i].getNama());
          model.addElement(listItems[i].getDeskripsi());
          model.addElement(listItems[i].getUrl());
+         model.addElement(" ");
        }
        repoList = new JList<String>(model);
        repoList.setLayoutOrientation(JList.VERTICAL);

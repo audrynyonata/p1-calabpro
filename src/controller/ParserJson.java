@@ -1,10 +1,15 @@
 package controller;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.Base64;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import model.User;
 
@@ -75,6 +80,10 @@ public class ParserJson {
       }
       reader.close();
       return (stringBuilder.toString());
+    } catch (UnknownHostException u) {
+      JOptionPane.showMessageDialog(new JFrame(), "Tidak ada koneksi internet. Harap coba lagi.", "Error: Lost Internet Connection", JOptionPane.ERROR_MESSAGE);
+    } catch (IOException i) {
+      JOptionPane.showMessageDialog(new JFrame(), "Otentikasi gagal. Harap periksa token.", "Error: Bad Authentication", JOptionPane.ERROR_MESSAGE);
     } catch (Exception e) {
       e.printStackTrace();
     }
