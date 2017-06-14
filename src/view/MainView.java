@@ -162,7 +162,6 @@ public class MainView extends JFrame {
     }
   }
   
-  
   public JTextField searchField;
   public SearchByPanel searchByPanel;
   public FilterPanel filterPanel;
@@ -257,12 +256,12 @@ public class MainView extends JFrame {
         count = 100;
       }
       result = new String[count];
-      int fromIndex = 0;
+      int fromIndex = x.getString().indexOf("\"login\"");
       String lastElement = "";
       String username = "";
       for (int n = 0; n < count; n++){
         if (n > 0){
-          fromIndex = x.getString().indexOf(lastElement,fromIndex+1);
+          fromIndex = x.getString().indexOf(lastElement,fromIndex) + 1;
         }
         lastElement = x.get(ParserJson.SITE_ADMIN,fromIndex);
         username = x.get(ParserJson.USERNAME,fromIndex);
