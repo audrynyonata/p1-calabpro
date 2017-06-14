@@ -7,6 +7,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -68,31 +69,22 @@ public class UserView extends JFrame {
    
    class RepositoryPanel extends JPanel {
      private Repository[] listItems;
-     private JList<Repository> repoList;
+     private JList<String> repoList;
      
      public RepositoryPanel(){
        setLayout(new BorderLayout());
        RepositoryController rc = new RepositoryController(user);
        listItems = rc.getRepos();
-       repoList = new JList<Repository>(listItems);
+       DefaultListModel<String> model = new DefaultListModel<String>();
+       for(int i = 0; i<listItems.length;i++){
+         model.addElement(i+1 + ": " + listItems[i].getNama());
+         model.addElement(listItems[i].getDeskripsi());
+         model.addElement(listItems[i].getUrl());
+       }
+       repoList = new JList<String>(model);
        repoList.setLayoutOrientation(JList.VERTICAL);
        JScrollPane p = new JScrollPane(repoList);
        add(p);
-     }
-     
-     public void clear(){
-       for(int i = 0; i<listItems.length; i++){
-         listItems[i].setData(null, null, null);
-       }
-       repoList.setListData(listItems);
-     }
-     
-     public void setArray(Repository[] r){
-       clear();
-       for (int i = 0; i < r.length; i++){
-         listItems[i] = r[i];
-       }
-       repoList.setListData(listItems);
      }
    }
 }

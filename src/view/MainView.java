@@ -83,6 +83,7 @@ public class MainView extends JFrame {
       nf.setValueClass(Integer.class);
       nf.setAllowsInvalid(false);
       nf.setMinimum(0);
+      nf.setMaximum(99999999);
       add(new JLabel("Filter : "));
       add(new JLabel("Jumlah repository : "));
       repoField = new JFormattedTextField(nf);
@@ -261,9 +262,8 @@ public class MainView extends JFrame {
       String username = "";
       for (int n = 0; n < count; n++){
         if (n > 0){
-          fromIndex = x.getString().indexOf(lastElement,fromIndex) + 1;
+          fromIndex = x.getString().indexOf(lastElement,fromIndex+1);
         }
-        System.out.println(fromIndex);
         lastElement = x.get(ParserJson.SITE_ADMIN,fromIndex);
         username = x.get(ParserJson.USERNAME,fromIndex);
         result[n] = username;
