@@ -53,7 +53,11 @@ public class ParserJson {
     return s;
   }
 
-  public static String getFromUrl(String searchUrl){
+  public String getGithubUrl(){
+    return githubUrl;
+  }
+  
+  public String getFromUrl(String searchUrl){
     String credentials1 = "audrynyonata";
     String credentials2 = "d48fc53efc21270629ea";
     String credentials3 = "9b675c261efe4739e669";
