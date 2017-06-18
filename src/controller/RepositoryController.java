@@ -19,6 +19,10 @@ public class RepositoryController {
     owner = o;
   }
   
+  public User getOwner(){
+    return owner;
+  }
+  
   public Repository[] getRepos(){
     ParserJson x = new ParserJson();
     x.setAsJsonRepo(owner);
