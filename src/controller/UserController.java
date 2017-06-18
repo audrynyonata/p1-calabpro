@@ -18,6 +18,10 @@ public class UserController {
     username = u;
   }
   
+  public String getUsername(){
+    return username;
+  }
+  
   public User getUserInfo(){
     ParserJson x = new ParserJson();
     x.setAsJsonUser(username);
