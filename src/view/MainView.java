@@ -21,6 +21,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -234,13 +235,25 @@ public class MainView extends JFrame {
     resultPanel = new ResultPanel();
     add(resultPanel,new GridBagConstraints(0,4,GridBagConstraints.REMAINDER,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,insets3,0,200));
     
+    JButton credits = new JButton("Credits");
+    credits.addActionListener(new ActionListener(){
+      public void actionPerformed(ActionEvent e){
+        String message1 = "\"Search by Audry Nyonata\" offers to search among users by their username, fullname, or email.\n";
+        String message2 = "Their repositories will also be listed if existed. Thanks to Github API and all of the\n";
+        String message3 = "thoughtful programming laboratory assistants (2013, 2014) for making this possible.\n";
+        String message4 = "Seleksi Calon Asisten Lab Programming. Labtek V, ITB. 2017.\n";
+        JOptionPane.showMessageDialog(new JFrame(), message1+message2+message3+message4, "Credits", JOptionPane.INFORMATION_MESSAGE);
+      }
+    });
+    add(credits,new GridBagConstraints(0,5,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.NONE,insets3,0,0));
+
     JButton exit = new JButton("Exit");
     exit.addActionListener(new ActionListener(){
       public void actionPerformed(ActionEvent e){
         System.exit(0);
       }
     });
-    add(exit,new GridBagConstraints(0,5,GridBagConstraints.REMAINDER,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.NONE,insets3,0,0));
+    add(exit,new GridBagConstraints(1,5,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.NONE,insets3,0,0));
   }
   
   public String[] getUsers(){
