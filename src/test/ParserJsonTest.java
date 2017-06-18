@@ -9,7 +9,7 @@ import org.junit.Test;
 import controller.ParserJson;
 
 /**
- * RepositoryController.java
+ * ParserJsonTest.java
  * @author NIM/Nama: 13515087/Audry Nyonata.
  */
 

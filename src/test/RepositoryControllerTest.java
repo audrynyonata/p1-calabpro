@@ -11,7 +11,7 @@ import org.junit.Test;
 import controller.RepositoryController;
 
 /**
- * RepositoryController.java
+ * RepositoryControllerTest.java
  * @author NIM/Nama: 13515087/Audry Nyonata.
  */
 

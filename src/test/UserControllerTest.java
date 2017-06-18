@@ -9,7 +9,7 @@ import org.junit.Test;
 import controller.UserController;
 
 /**
- * RepositoryController.java
+ * UserControllerTest.java
  * @author NIM/Nama: 13515087/Audry Nyonata.
  */
 

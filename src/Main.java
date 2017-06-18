@@ -1,7 +1,7 @@
 import view.MainView;
 
 /**
- * RepositoryController.java
+ * Main.java
  * @author NIM/Nama: 13515087/Audry Nyonata.
  */
 
