@@ -1,12 +1,13 @@
 package test;
 
+import controller.UserController;
+
 import junit.framework.TestCase;
 
 import model.User;
 
+import org.junit.Before;
 import org.junit.Test;
-
-import controller.UserController;
 
 /**
  * UserControllerTest.java
@@ -14,36 +15,42 @@ import controller.UserController;
  */
 
 public class UserControllerTest extends TestCase {
-  UserController uc = new UserController("audrynyonata"); 
-  User u = uc.getUserInfo();
+  UserController uc;
+  User user;
+  
+  @Before
+  public void setUp() {
+    uc = new UserController("audrynyonata"); 
+    user = uc.getUserInfo();
+  }
   
   @Test
-  public void testGetter(){
+  public void testGetter() {
     assertEquals("audrynyonata", uc.getUsername());
   }
  
   @Test
-  public void testGetUserInfo1(){
-    assertEquals("audrynyonata", u.getUsername());
+  public void testGetUserInfo1() {
+    assertEquals("audrynyonata", user.getUsername());
   }
 
   @Test
-  public void testGetUserInfo2(){
-    assertNotNull(u.getEmail());
+  public void testGetUserInfo2() {
+    assertNotNull(user.getEmail());
   }
   
   @Test
-  public void testGetUserInfo3(){
-    assertNotNull(u.getNamaPengguna());
+  public void testGetUserInfo3() {
+    assertNotNull(user.getNamaPengguna());
   }
   
   @Test
-  public void testGetUserInfo4(){
-    assertFalse(u.getNRepo() < 0);
+  public void testGetUserInfo4() {
+    assertFalse(user.getNRepo() < 0);
   }
   
   @Test
-  public void testGetUserInfo5(){
-    assertFalse(u.getNFollower() < 0);
+  public void testGetUserInfo5() {
+    assertFalse(user.getNFollower() < 0);
   }
 }

@@ -11,19 +11,24 @@ import model.User;
 public class RepositoryController {
   private static User owner;
   
-  public RepositoryController(){
+  public RepositoryController() {
     owner = new User();
   }
   
-  public RepositoryController(User o){
+  public RepositoryController(User o) {
     owner = o;
   }
   
-  public User getOwner(){
+  public User getOwner() {
     return owner;
   }
   
-  public Repository[] getRepos(){
+  /**
+   * Mengembalikan array berelemen repository dari owner.
+   * Jika tidak memiliki repository publik, maka array berukuran nol.
+   * @return sebuah array berisi repository publik.
+   */
+  public Repository[] getRepos() {
     ParserJson x = new ParserJson();
     x.setAsJsonRepo(owner);
     Integer count = owner.getNRepo();
@@ -34,8 +39,8 @@ public class RepositoryController {
       String deskripsi = "";
       String url = "";
       int fromIndex = x.getString().indexOf("\"id\"");
-      for (int n = 0; n < count; n++){
-        if (n > 0){
+      for (int n = 0; n < count; n++) {
+        if (n > 0) {
           fromIndex = x.getString().indexOf(lastElement,fromIndex) + 1;
         }
         lastElement = x.get(ParserJson.DEFAULT_BRANCH,fromIndex);

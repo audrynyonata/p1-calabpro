@@ -35,29 +35,35 @@ public class ParserJson {
   
   public static final int FILTER_NONE = -1;
 
-  private String s;
+  private String string;
 
-  public ParserJson(){
-    s = "";
+  public ParserJson() {
+    string = "";
   }
 
-  public ParserJson(String string){
-    s = string;
+  public ParserJson(String string) {
+    string = string;
   }
   
-  public ParserJson (ParserJson p){
-    s = p.s;
+  public ParserJson(ParserJson p) {
+    string = p.string;
   }
   
-  public String getString(){
-    return s;
+  public String getString() {
+    return string;
   }
 
-  public String getGithubUrl(){
+  public String getGithubUrl() {
     return githubUrl;
   }
   
-  public String getFromUrl(String searchUrl){
+  /**
+   * Mengembalikan string format JSON dari GET sebuah url.
+   * Melempar exception offline (UnknownHost) dan 401 error (IOException).
+   * @param searchUrl string berisi url yang akan diakses.
+   * @return string berformat JSON hasil GET searchUrl.
+   */
+  public String getFromUrl(String searchUrl) {
     String credentials1 = "audrynyonata";
     String credentials2 = "d48fc53efc21270629ea";
     String credentials3 = "9b675c261efe4739e669";
@@ -72,86 +78,122 @@ public class ParserJson {
       String basicAuth = "Basic " + new String(Base64.getEncoder().encode(credentials.getBytes()));
       connection.setRequestProperty("Authorization", basicAuth);
       connection.setRequestMethod("GET");
-      connection.setReadTimeout(15*1000);
+      connection.setReadTimeout(15 * 1000);
       connection.connect();
       
       reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
       stringBuilder = new StringBuilder();
       
       String line = null;
-      while ((line = reader.readLine())!=null){
+      while ((line = reader.readLine()) != null) {
         stringBuilder.append(line + "\n");
       }
       reader.close();
       return (stringBuilder.toString());
     } catch (UnknownHostException u) {
-      JOptionPane.showMessageDialog(new JFrame(), "Tidak ada koneksi internet. Harap coba lagi.", "Error: Lost Internet Connection", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(new JFrame(), 
+          "Tidak ada koneksi internet. Harap coba lagi.", 
+          "Error: Lost Internet Connection", JOptionPane.ERROR_MESSAGE);
     } catch (IOException i) {
-      JOptionPane.showMessageDialog(new JFrame(), "Otentikasi gagal. Harap periksa token.", "Error: Bad Authentication", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(new JFrame(),
+          "Otentikasi gagal. Harap periksa token.",
+          "Error: Bad Authentication", JOptionPane.ERROR_MESSAGE);
     } catch (Exception e) {
       e.printStackTrace();
     }
     return ("");
   }
   
-  public void setAsJsonSearch(String searchKey, String searchIn, Integer nr, Integer nf){
+  /**
+   * Memanggil fungsi getFromUrl dengan query search sebagai url.
+   * @param searchKey string kata kunci.
+   * @param searchIn string mode pencarian: login, email, fullname.
+   * @param nr Integer filter jumlah repository minimum.
+   * @param nf Integer filter jumlah follower minimum.
+   */
+  public void setAsJsonSearch(String searchKey, String searchIn, Integer nr, Integer nf) {
     StringBuilder searchUrl = new StringBuilder();
     searchUrl.append(githubUrl + "/search/users?q=" + searchKey + "+in:" + searchIn);
-    if (nr != FILTER_NONE){
+    if (nr != FILTER_NONE) {
       searchUrl.append("+repos:%3E" + nr.toString());
     }
-    if (nf != FILTER_NONE){
+    if (nf != FILTER_NONE) {
       searchUrl.append("+followers:%3E" + nf.toString());
     }
     searchUrl.append("&per_page=100");
-    s = getFromUrl(searchUrl.toString());
+    string = getFromUrl(searchUrl.toString());
   }
   
-  public void setAsJsonUser(String username){
-    s = getFromUrl(githubUrl+"/users/"+username);
+  /**
+   * Memanggil fungsi getFromUrl dengan query username sebagai url.
+   * @param username string username yang ingin diakses.
+   */
+  public void setAsJsonUser(String username) {
+    string = getFromUrl(githubUrl + "/users/" + username);
   }
  
-  public void setAsJsonRepo(User owner){
+  /**
+   * Memanggil fungsi getFromUrl dengan query repository dari seorang user.
+   * @param owner bertipe User yang akan diambil username dan repo publiknya.
+   */
+  public void setAsJsonRepo(User owner) {
     StringBuilder reposUrl = new StringBuilder();
-    reposUrl.append(githubUrl+"/users/"+owner.getUsername()+"/repos?per_page=100");
+    reposUrl.append(githubUrl + "/users/" + owner.getUsername() + "/repos?per_page=100");
     String temp = getFromUrl(reposUrl.toString());
     
     char[] arr = temp.toCharArray();
-    while (temp.contains("\"owner\"")){
+    while (temp.contains("\"owner\"")) {
       int i = temp.indexOf("\"owner\"");
       int j = temp.indexOf("\"private\"",i);
-      for (int k=i; k<j; k++){
+      for (int k = i; k < j; k++) {
         arr[k] = ' ';
       }
       temp = new String(arr);
     }
-    s = new String(temp);
+    string = new String(temp);
   }
   
-  public String get(int constant, int fromIndex){
+  /** 
+   * Fungsi get mengembalikan string value dari field JSON.
+   * @param constant integer konstanta untuk nama field.
+   * @param fromIndex integer indeks mulainya pencarian.
+   * @return string berupa value (sisi kanan tanda titik dua JSON).
+   */
+  public String get(int constant, int fromIndex) {
     String key = null;
-    if (!s.equals("")){
-      switch (constant){
-        case TOTAL_COUNT : key = "total" + "_" + "count"; break;
-        case USERNAME : key = "login"; break;
-        case EMAIL : key = "email"; break;
-        case NAMA_PENGGUNA : key = "name"; break;
-        case PUBLIC_REPOS : key = "public_repos"; break;
-        case FOLLOWERS : key = "followers"; break;
-        case NAMA_REPOSITORY : key = "name"; break;
-        case DESCRIPTION : key = "description"; break;
-        case HTML_URL : key = "html_url"; break;
-        case SITE_ADMIN : key = "site_admin"; break;
-        default : key = "default_branch"; break;
+    if (!string.equals("")) {
+      switch (constant) {
+        case TOTAL_COUNT : key = "total" + "_" + "count"; 
+          break;
+        case USERNAME : key = "login"; 
+          break;
+        case EMAIL : key = "email"; 
+          break;
+        case NAMA_PENGGUNA : key = "name"; 
+          break;
+        case PUBLIC_REPOS : key = "public_repos"; 
+          break;
+        case FOLLOWERS : key = "followers"; 
+          break;
+        case NAMA_REPOSITORY : key = "name"; 
+          break;
+        case DESCRIPTION : key = "description"; 
+          break;
+        case HTML_URL : key = "html_url"; 
+          break;
+        case SITE_ADMIN : key = "site_admin"; 
+          break;
+        default : key = "default_branch"; 
+          break;
       }
       key = "\"" + key + "\":";
-      int lhs = s.indexOf(key, fromIndex);
+      int lhs = string.indexOf(key, fromIndex);
       int j = key.length();
-      int rhs = s.indexOf(",", lhs+j);
-      String result = s.substring(lhs+j,rhs);
-      if (result.charAt(0) == '"'){
-        result = result.substring(1, result.length()-1);
-      } else if (result.equals("null")){
+      int rhs = string.indexOf(",", lhs + j);
+      String result = string.substring(lhs + j,rhs);
+      if (result.charAt(0) == '"') {
+        result = result.substring(1, result.length() - 1);
+      } else if (result.equals("null")) {
         result = "Tidak ada data";
       }
       return result;
@@ -160,7 +202,7 @@ public class ParserJson {
     }
   }
   
-  public String toString(){
-    return s;
+  public String toString() {
+    return string;
   }
 }

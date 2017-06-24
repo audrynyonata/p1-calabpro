@@ -6,53 +6,107 @@ package model;
  */
 
 public class User {
+  /**
+   * Atribut string username user.
+   */
   private String username;
+  /**
+   * Atribut string alamat email user.
+   */
   private String email;
+  /**
+   * Atribut string nama pengguna user.
+   */
   private String namaPengguna;
-  private Integer nRepo;
-  private Integer nFollower;
+  /**
+   * Atribut Integer jumlah repository publik user.
+   */
+  private Integer numRepo;
+  /**
+   * Atribut Integer jumlah follower user.
+   */
+  private Integer numFollower;
 
-  public User(){
+  /**
+   * Konstruktor.
+   */
+  public User() {
     username = "";
     email = "";
     namaPengguna = "";
-    nRepo = 0;
-    nFollower = 0;
+    numRepo = 0;
+    numFollower = 0;
   }
-  
-  public User (String u, String e, String n, Integer r, Integer f){
+
+  /**
+   * Konstruktor dengan parameter.
+   * @param u username.
+   * @param e email.
+   * @param n nama pengguna.
+   * @param r jumlah repository publik.
+   * @param f jumlah followers.
+   */
+  public User(String u, String e, String n, Integer r, Integer f) {
     username = u;
     email = e;
     namaPengguna = n;
-    nRepo = r;
-    nFollower = f;
+    numRepo = r;
+    numFollower = f;
   }
   
-  public String getUsername(){
+  /**
+   * Mengembalikan username user.
+   * @return string berisi username.
+   */
+  public String getUsername() {
     return username;
   }
   
-  public String getEmail(){
+  /**
+   * Mengembalikan alamat email user.
+   * @return string berisi email.
+   */
+  public String getEmail() {
     return email;
   }
   
-  public String getNamaPengguna(){
+  /**
+   * Mengembalikan nama pengguna user.
+   * @return string berisi nama pengguna.
+   */
+  public String getNamaPengguna() {
     return namaPengguna;
   }
   
-  public Integer getNRepo(){
-    return nRepo;
+  /**
+   * Mengembalikan jumlah repository publik user.
+   * @return Integer jumlah repository publik.
+   */
+  public Integer getNRepo() {
+    return numRepo;
   }
 
-  public Integer getNFollower(){
-    return nFollower;
+  /**
+   * Mengembalikan jumlah follower user.
+   * @return Integer jumlah follower.
+   */
+  public Integer getNFollower() {
+    return numFollower;
   }
   
-  public void setData(String u, String e, String n, Integer r, Integer f){
+  /**
+   * Mengubah data yang tersimpan pada atribut.
+   * @param u username.
+   * @param e email.
+   * @param n nama pengguna.
+   * @param r jumlah repository publik.
+   * @param f jumlah followers.
+   */
+  public void setData(String u, String e, String n, Integer r, Integer f) {
     username = u;
     email = e;
     namaPengguna = n;
-    nRepo = r;
-    nFollower = f;
+    numRepo = r;
+    numFollower = f;
   }
 }
