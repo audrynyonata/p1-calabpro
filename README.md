@@ -2,11 +2,12 @@ p1-calabpro
 Project 1 Ca Labpro
 
 # README versi 26 Juni 2017             
-Older version: 22 Mei 2017.
-Update: Menambah instruksi pemakaian dilengkapi screenshot program.
+Older version: 22 Mei 2017. 
+Update: Menambah instruksi pemakaian dilengkapi screenshot program. 
 
 NIM - Nama : 13515087 - Audry Nyonata
 
+## Pengenalan Singkat.
 1. JSON  
    JSON (JavaScript Object Notation) adalah sebuah format yang dibaca selama pembangunan struktur data. JSON bersifat minimal dan ringan, sehingga mudah dibaca dan ditulis oleh manusia, serta mudah untuk diparse dan digenerate oleh mesin. Utamanya JSON digunakan untuk memindahkan data antara server dan web application, sebagai pengganti XML.
 
@@ -41,3 +42,17 @@ NIM - Nama : 13515087 - Audry Nyonata
    https://blogs.infosupport.com/accessing-githubs-rest-api-with-curl/
 
 ## Instruksi pemakaian program.
+1. Jalankan program. Tombol search aktif jika keyword tidak kosong.  
+2. Ketik keyword yang ingin dicari. Mode pencarian dapat dilakukan dengan mencari keyword di username, e-mail, atau nama lengkap pengguna. Isi filter dengan angka jika perlu, angka yang diijinkan yaitu 0 s.d. 99999999.  
+3. Klik tombol search.  
+4. Klik salah satu username hasil yang muncul. Infomasi dan profil user tersebut akan ditampilkan. 
+5. Klik tombol close untuk menutup profil user. Klik tombol exit untuk keluar dari program. 
+6. Jika pencarian tidak menemukan hasil yang sesuai, hasil yang muncul yaitu "Tidak ditemukan".
+
+## Fitur-fitur lain.
+1. Credits.  
+   Credits berisi pernyataan serta ucapan terima kasih mengenai program ini.
+2. UnknownHost Exception Error Message.  
+   Jendela error message "Error: Lost Internet Connection" muncul ketika koneksi internet gagal dilakukan. Jika terjadi, sebaiknya mengecek hardware sambungan internet atau url dan server.
+3. IOException Error Message.  
+   Jendela error message "Error: Bad Authentication" muncul ketika koneksi internet sudah tersambung, namun server mengembalikan error code, pada program ini error 401, 403, dan 404 bisa diatasi dengan memperbaiki access token.
