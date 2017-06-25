@@ -309,18 +309,18 @@ public class MainView extends JFrame {
         }
       }
     });
-    add(searchField,new GridBagConstraints(1,1,1,1,0,0,
-        GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,insets1,0,0));
+    add(searchField,new GridBagConstraints(1,1,GridBagConstraints.REMAINDER,1,0,
+        0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,insets1,0,0));
 
-    Insets insets2 = new Insets(0,0,15,20);
+    Insets insets2 = new Insets(0,0,15,50);
     searchByPanel = new SearchByPanel();
     add(searchByPanel,new GridBagConstraints(0,2,1,1,0,0,
         GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,insets2,0,0));
 
     Insets insets3 = new Insets(0,0,15,0);
     filterPanel = new FilterPanel();
-    add(filterPanel,new GridBagConstraints(1,2,1,1,0,0,
-        GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,insets3,0,0));
+    add(filterPanel,new GridBagConstraints(1,2,GridBagConstraints.REMAINDER,1,0,
+        0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,insets3,0,0));
 
     searchButton = new JButton("Search");
     searchButton.setEnabled(false);
@@ -363,10 +363,9 @@ public class MainView extends JFrame {
         System.exit(0);
       }
     });
-    add(exit,new GridBagConstraints(1,5,1,1,0,0,
+    add(exit,new GridBagConstraints(1,5,GridBagConstraints.REMAINDER,1,0,0,
         GridBagConstraints.CENTER,GridBagConstraints.NONE,insets3,0,0));
   }
-  
   
   /**
    * Fungsi getUsers melakukan search pada API berdasarkan keyword.
