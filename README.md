@@ -43,11 +43,16 @@ NIM - Nama : 13515087 - Audry Nyonata
 
 ## Instruksi pemakaian program.
 1. Jalankan program. Tombol search aktif jika keyword tidak kosong.  
+   <img src="https://user-images.githubusercontent.com/23259980/27519581-3c05a262-5a21-11e7-9edc-aa5ec4e1ee33.png" width="400px" height="400px">  
 2. Ketik keyword yang ingin dicari. Mode pencarian dapat dilakukan dengan mencari keyword di username, e-mail, atau nama lengkap pengguna. Isi filter dengan angka jika perlu, angka yang diijinkan yaitu 0 s.d. 99999999.  
+   <img src="https://user-images.githubusercontent.com/23259980/27519582-3c08adb8-5a21-11e7-8c62-ba0a7f31ed3a.png" width="400px" height="400px">  
 3. Klik tombol search.  
+   <img src="https://user-images.githubusercontent.com/23259980/27519583-3c0d3f2c-5a21-11e7-8ae9-849dd27d5ffb.png" width="400px" height="400px">  
 4. Klik salah satu username hasil yang muncul. Infomasi dan profil user tersebut akan ditampilkan. 
-5. Klik tombol close untuk menutup profil user. Klik tombol exit untuk keluar dari program. 
-6. Jika pencarian tidak menemukan hasil yang sesuai, hasil yang muncul yaitu "Tidak ditemukan".
+   <img src="https://user-images.githubusercontent.com/23259980/27519584-3c0dd57c-5a21-11e7-9e93-47b0f6e55d77.png" width="600px" height="420px">  
+5. Jika pencarian tidak menemukan hasil yang sesuai, hasil yang muncul yaitu "Tidak ditemukan".
+   <img src="https://user-images.githubusercontent.com/23259980/27519585-3c22908e-5a21-11e7-9ff5-822fab642c3a.png" width="400px" height="400px">  
+6. Klik tombol close untuk menutup profil user. Klik tombol exit untuk keluar dari program. 
 
 ## Fitur-fitur lain.
 1. Credits.  
