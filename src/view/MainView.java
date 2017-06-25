@@ -33,17 +33,31 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.NumberFormatter;
 
 /**
- * MainView.java
+ * MainView.java.
+ * Memanfaatkan berbagai controller dan data model,
+ * Menyediakan user interface utama program.
  * @author NIM/Nama: 13515087/Audry Nyonata.
  */
 
 @SuppressWarnings("serial")
 public class MainView extends JFrame {
   class SearchByPanel extends JPanel {
+    /** 
+     * Atribut buttonGroup.
+     */
     private ButtonGroup group = new ButtonGroup();
+    /**
+     * Atribut array of string bernilai "Username", "E-mail", "Nama Pengguna".
+     */
     private String[] text = {"Username", "E-mail", "Nama Pengguna"}; 
+    /**
+     * Atribut array of string bernilai "login", "email", "fullname".
+     */
     private String[] value = {"login", "email", "fullname"}; 
        
+    /**
+     * Konstruktor.
+     */
     public SearchByPanel() {
       setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
       add(new JLabel("Search by : "));
@@ -59,15 +73,30 @@ public class MainView extends JFrame {
       }
     }
     
+    /**
+     * Mengembalikan buttonGroup dari radiobutton.
+     * @return group bertipe buttonGroup.
+     */
     public ButtonGroup getGroup() {
       return group;
     }
   }
    
   class FilterPanel extends JPanel {
+    /**
+     * Atribut textfield untuk filter jumlah repository minimum.
+     * Format angka (0 s.d. 99999999) tanpa karakter minus, koma, maupun spasi.
+     */
     private JFormattedTextField repoField;
+    /**
+     * Atribut textfield untuk filter jumlah follower minimum.
+     * Format angka (0 s.d. 99999999) tanpa karakter minus, koma, maupun spasi.
+     */
     private JFormattedTextField followerField;
     
+    /**
+     * Konstruktor.
+     */
     public FilterPanel() {
       setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
       NumberFormat f = NumberFormat.getNumberInstance();
@@ -94,6 +123,10 @@ public class MainView extends JFrame {
       add(followerField);
     }
     
+    /**
+     * Mengembalikan nilai int repository minimum dari repoField.
+     * @return int jumlah repository.
+     */
     public int getNRepo() {
       if (repoField.getText().equals("")) {
         return ParserJson.FILTER_NONE;
@@ -102,6 +135,10 @@ public class MainView extends JFrame {
       }
     }
 
+    /**
+     * Mengembalikan nilai int follower minimum dari repoField.
+     * @return int jumlah follower.
+     */
     public int getNFollower() {
       if (followerField.getText().equals("")) {
         return ParserJson.FILTER_NONE;
@@ -112,9 +149,18 @@ public class MainView extends JFrame {
   }
   
   class ResultPanel extends JPanel {
+    /**
+     * Atribut array of string untuk menyimpan username.
+     */
     private String[] listItems = new String[100];
+    /**
+     * Atribut jlist of string untuk menyimpan username.
+     */
     private JList<String> userList;
     
+    /**
+     * Konstruktor.
+     */
     public ResultPanel() {
       setLayout(new BorderLayout());
       userList = new JList<String>(listItems);
@@ -139,14 +185,26 @@ public class MainView extends JFrame {
       add(p);
     }
     
+    /**
+     * Mengembalikan data yang tersimpan pada jlist of string.
+     * @return jlist of string.
+     */
     public JList<String> getList() {
       return userList;
     }
     
+    /**
+     * Mengembalikan data yang tersimpan pada array of string.
+     * @return array of string.
+     */
     public String[] getArray() {
       return listItems;
     }
     
+    /**
+     * Mengubah data yang tersimpan pada atribut array sekaligus jlist.
+     * @param s array of string yang ingin disimpan di atribut.
+     */
     public void setArray(String[] s) {
       clear();
       for (int i = 0; i < s.length; i++) {
@@ -155,6 +213,9 @@ public class MainView extends JFrame {
       userList.setListData(listItems);
     }
     
+    /**
+     * Menghapus data yang tersimpan pada atribut array sekaligus jlist.
+     */
     public void clear() {
       for (int i = 0; i < listItems.length; i++) {
         listItems[i] = "";
@@ -163,15 +224,44 @@ public class MainView extends JFrame {
     }
   }
   
+  /**
+   * Atribut textbox untuk menyimpan keyword pencarian.
+   */
   public JTextField searchField;
+  /**
+   * Atribut searchByPanel.
+   * Berisi group radiobutton mode pencarian login, email, dan fullname.
+   */
   public SearchByPanel searchByPanel;
+  /**
+   * Atribut filterPanel.
+   * Berisi textbox untuk filter jumlah repository dan follower minimum.
+   */
   public FilterPanel filterPanel;
+  /**
+   * Atribut searchButton bertipe jbutton untuk memulai pencarian.
+   */
   public JButton searchButton;
+  /**
+   * Atribut resultPanel berisi jlist of string yang menyimpan hasil pencarian.
+   */
   public ResultPanel resultPanel;
   
+  /**
+   * Atribut string keyword pencarian.
+   */
   public String keyword;
+  /** 
+   * Atribut string mode pencarian, login, email, atau fullname. 
+   */
   public String searchIn;
+  /**
+   * Atribut Integer filter jumlah repository minimum pencarian.
+   */
   public Integer numRepo;
+  /**
+   * Atribut Integer filter jumlah follower minimum pencarian.
+   */  
   public Integer numFollower;
 
   /**
@@ -311,6 +401,10 @@ public class MainView extends JFrame {
     return result;
   }
   
+  /**
+   * Melakukan search.
+   * Menghapus isi resultPanel dan diisi hasil pemanggilan fungsi getUsers.
+   */
   public void search() {
     resultPanel.clear();
     resultPanel.setArray(getUsers());

@@ -11,7 +11,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * RepositoryControllerTest.java
+ * RepositoryControllerTest.java.
+ * Melakukan test untuk repository dan repositoryController.
  * @author NIM/Nama: 13515087/Audry Nyonata.
  */
 

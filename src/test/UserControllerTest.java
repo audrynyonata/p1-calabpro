@@ -10,7 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * UserControllerTest.java
+ * UserControllerTest.java.
+ * Melakukan test untuk user dan userController.
  * @author NIM/Nama: 13515087/Audry Nyonata.
  */
 

@@ -22,7 +22,9 @@ import model.Repository;
 import model.User;
 
 /**
- * UserView.java
+ * UserView.java.
+ * Memanfaatkan berbagai controller dan data model,
+ * Menyediakan user interface untuk melihat profil user github.
  * @author NIM/Nama: 13515087/Audry Nyonata.
  */
 
@@ -87,9 +89,18 @@ public class UserView extends JFrame {
   }
   
   class RepositoryPanel extends JPanel {
+    /**
+     * Atribut bertipe array of repository.
+     */
     private Repository[] listItems;
+    /**
+     * Atribut bertipe jlist of string.
+     */
     private JList<String> repoList;
      
+    /**
+     * Konstruktor.
+     */
     public RepositoryPanel() {
       setLayout(new BorderLayout());
       RepositoryController rc = new RepositoryController(user);

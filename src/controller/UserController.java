@@ -3,21 +3,36 @@ package controller;
 import model.User;
 
 /**
- * UserController.java
+ * UserController.java.
+ * Berisi fungsi untuk mengolah data bertipe user.
  * @author NIM/Nama: 13515087/Audry Nyonata.
  */
 
 public class UserController {
+  /**
+   * Atribut string username user.
+   */
   private String username;
   
+  /**
+   * Konstruktor.
+   */
   public UserController() {
     username = "";
   }
   
+  /**
+   * Konstruktor dengan parameter.
+   * @param u string username yang akan disimpan di atribut.
+   */
   public UserController(String u) {
     username = u;
   }
   
+  /**
+   * Mengembalikan string username yang tersimpan di atribut.
+   * @return string username yang tersimpan di atribut.
+   */
   public String getUsername() {
     return username;
   }

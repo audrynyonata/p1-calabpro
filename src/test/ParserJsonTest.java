@@ -10,7 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * ParserJsonTest.java
+ * ParserJsonTest.java.
+ * Melakukan test untuk parserJson.
  * @author NIM/Nama: 13515087/Audry Nyonata.
  */
 

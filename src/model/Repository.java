@@ -1,7 +1,8 @@
 package model;
 
 /**
- * Repository.java
+ * Repository.java.
+ * Data model representasi repository user github.
  * @author NIM/Nama: 13515087/Audry Nyonata.
  */
 

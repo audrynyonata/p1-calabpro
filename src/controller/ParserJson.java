@@ -14,45 +14,109 @@ import javax.swing.JOptionPane;
 import model.User;
 
 /**
- * ParserJson.java
+ * ParserJson.java.
+ * Berisi konstanta, access token, dan fungsi yang dibutuhkan
+ * untuk koneksi internet serta mengolah hasilnya (string JSON). 
  * @author NIM/Nama: 13515087/Audry Nyonata.
  */
 
 public class ParserJson {
+  /**
+   * Konstanta string untuk mengakses GithubAPI (https://api.github.com).
+   */
   private static final String githubUrl = "https://api.github.com";
   
+  /**
+   * Konstanta kode untuk mencari string "default_branch".
+   */
   public static final int DEFAULT_BRANCH = 0;
+  /**
+   * Konstanta kode untuk mencari string "total_count".
+   */
   public static final int TOTAL_COUNT = 1;
+  /**
+   * Konstanta kode untuk mencari string "login".
+   */
   public static final int USERNAME = 2;
+  /**
+   * Konstanta kode untuk mencari string "email".
+   */
   public static final int EMAIL = 3;
+  /**
+   * Konstanta kode untuk mencari string "name".
+   */
   public static final int NAMA_PENGGUNA = 4;
+  /**
+   * Konstanta kode untuk mencari string "public_repos".
+   */
   public static final int PUBLIC_REPOS = 5;
+  /**
+   * Konstanta kode untuk mencari string "followers".
+   */
   public static final int FOLLOWERS = 6;
+  /**
+   * Konstanta kode untuk mencari string "name".
+   */
   public static final int NAMA_REPOSITORY = 7;
+  /**
+   * Konstanta kode untuk mencari string "description".
+   */
   public static final int DESCRIPTION = 8;
+  /**
+   * Konstanta kode untuk mencari string "html_url".
+   */
   public static final int HTML_URL = 9;
+  /**
+   * Konstanta kode untuk mencari string "site_admin".
+   */
   public static final int SITE_ADMIN = 10;
   
+  /**
+   * Konstanta kode yang melambangkan pencarian tidak menggunakan filter.
+   */
   public static final int FILTER_NONE = -1;
 
+  /**
+   * Atribut string berformat JSON.
+   */
   private String string;
 
+  /**
+   * Konstruktor.
+   * Set atribut dengan null string.
+   */
   public ParserJson() {
     string = "";
   }
 
+  /**
+   * Konstruktor dengan parameter.
+   * @param s string yang nilainya akan disimpan di atribut.
+   */
   public ParserJson(String s) {
     string = s;
   }
   
+  /**
+   * Copy Constructor.
+   * @param p bertipe ParserJson yang akan dicopy.
+   */
   public ParserJson(ParserJson p) {
     string = p.string;
   }
   
+  /**
+   * Mengembalikan data string yang tersimpan di atribut.
+   * @return string.
+   */
   public String getString() {
     return string;
   }
 
+  /**
+   * Mengembalikan konstanta string githubUrl.
+   * @return string githubUrl.
+   */
   public String getGithubUrl() {
     return githubUrl;
   }
@@ -202,6 +266,10 @@ public class ParserJson {
     }
   }
   
+  /**
+   * Mengembalikan data yang tersimpan dalam atribut dalam tipe string.
+   * @return string.
+   */
   public String toString() {
     return string;
   }

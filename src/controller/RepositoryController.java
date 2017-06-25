@@ -4,21 +4,36 @@ import model.Repository;
 import model.User;
 
 /**
- * RepositoryController.java
+ * RepositoryController.java.
+ * Berisi fungsi untuk mengolah data bertipe repository.
  * @author NIM/Nama: 13515087/Audry Nyonata.
  */
 
 public class RepositoryController {
+  /**
+   * Atribut owner dari repository bertipe user.
+   */
   private static User owner;
   
+  /**
+   * Konstruktor.
+   */
   public RepositoryController() {
     owner = new User();
   }
   
+  /**
+   * Copy Constructor.
+   * @param o bertipe user yang ingin dicopy.
+   */
   public RepositoryController(User o) {
     owner = o;
   }
   
+  /**
+   * Mengembalikan data user yang tesimpan di atribut.
+   * @return user yang tersimpan di atribut.
+   */
   public User getOwner() {
     return owner;
   }
