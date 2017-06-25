@@ -1,7 +1,10 @@
 p1-calabpro  
 Project 1 Ca Labpro
 
-# README versi 22 Mei 2017             
+# README versi 26 Juni 2017             
+Older version: 22 Mei 2017.
+Update: Menambah instruksi pemakaian dilengkapi screenshot program.
+
 NIM - Nama : 13515087 - Audry Nyonata
 
 1. JSON  
@@ -36,3 +39,5 @@ NIM - Nama : 13515087 - Audry Nyonata
 
    https://developer.github.com/v3/.
    https://blogs.infosupport.com/accessing-githubs-rest-api-with-curl/
+
+## Instruksi pemakaian program.
