@@ -41,8 +41,8 @@ public class ParserJson {
     string = "";
   }
 
-  public ParserJson(String string) {
-    string = string;
+  public ParserJson(String s) {
+    string = s;
   }
   
   public ParserJson(ParserJson p) {
